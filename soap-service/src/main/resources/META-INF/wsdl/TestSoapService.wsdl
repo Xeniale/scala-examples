@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:rs="http://uillirt.com/scala/projects/ws/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  name="TestSoapService" targetNamespace="http://uillirt.com/scala/projects/ws/">
+    <wsdl:types>
+        <xsd:schema xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0"
+                    targetNamespace="http://uillirt.com/scala/projects/ws/">
+
+            <xsd:complexType name="CommonServiceCode">
+                <xsd:sequence>
+                    <xsd:element name="serviceId" type="xsd:string">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="ListCategoriesRequest">
+                <xsd:sequence>
+                    <xsd:element name="classifier" type="xsd:string"/>
+                    <xsd:element name="code" type="rs:CommonServiceCode" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="ListCategoriesResponse">
+                <xsd:sequence>
+                    <xsd:element name="code" minOccurs="0" maxOccurs="unbounded" type="rs:CommonServiceCode"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="listCategoriesRequest" type="rs:ListCategoriesRequest"/>
+            <xsd:element name="listCategoriesResponse" type="rs:ListCategoriesResponse"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ListCategoriesResponse">
+        <wsdl:part name="ListCategoriesResponse" element="rs:listCategoriesResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ListCategoriesRequest">
+        <wsdl:part name="ListCategoriesRequest" element="rs:listCategoriesRequest"></wsdl:part>
+    </wsdl:message>
+
+    <wsdl:portType name="TestSoapService">
+        <wsdl:operation name="listCategories">
+            <wsdl:input message="rs:ListCategoriesRequest"></wsdl:input>
+            <wsdl:output message="rs:ListCategoriesResponse"></wsdl:output>
+        </wsdl:operation>
+
+    </wsdl:portType>
+    <wsdl:binding name="TestSoapServiceSOAP" type="rs:TestSoapService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="listCategories">
+            <soap:operation soapAction="http://uillirt.com/scala/projects/ws/listServiceCategories"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="TestSoapService">
+        <wsdl:port binding="rs:TestSoapServiceSOAP" name="TestSoapServiceSOAP">
+            <soap:address location=""/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

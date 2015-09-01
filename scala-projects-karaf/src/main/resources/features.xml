@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="JDBC-bridges-${project.version}"
+          xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>
+
+    <feature name="uillirt-scala-soap" version="${project.version}">
+        <feature>cxf</feature>
+        <bundle>mvn:com.uillirt.scala/soap-service/${project.version}</bundle>
+    </feature>
+
+</features>
