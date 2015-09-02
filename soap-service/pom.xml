@@ -18,11 +18,21 @@
     <properties>
         <module.prefix>Soap service</module.prefix>
         <bundle-import>
+            <!--org.osgi.service.log,-->
+            <!--org.apache.aries.blueprint&lt;!&ndash;;version="${blueprint.version}"&ndash;&gt;,-->
+            <!--org.osgi.service.blueprint&lt;!&ndash;;version="${blueprint.version}"&ndash;&gt;,-->
+            org.apache.cxf.message;
+            org.apache.cxf.binding.soap;
+            org.apache.cxf.binding.soap.wsdl.extensions;version="${cxf.version}",
+            javax.xml.bind,
             javax.jws,
-            org.apache.cxf.*
+            javax.jws.soap,
+            javax.xml.datatype,
+            javax.xml.bind.annotation,
+            javax.xml.namespace
         </bundle-import>
         <bundle-export>
-            !*
+            com.uillirt.scala.projects.ws;version="${project.version}"
         </bundle-export>
     </properties>
 
@@ -36,6 +46,10 @@
             <artifactId>org.osgi.core</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-api</artifactId>
         </dependency>
@@ -46,6 +60,10 @@
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
