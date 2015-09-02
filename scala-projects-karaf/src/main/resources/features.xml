@@ -5,10 +5,8 @@
     <repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>
 
     <feature name="uillirt-scala-soap" version="${project.version}">
-        <feature>jetty</feature>
-        <feature>cxf</feature>
         <feature>http</feature>
-        <feature>http-whiteboard</feature>
+        <feature>cxf</feature>
         <feature>cxf-jaxws</feature>
         <bundle>mvn:com.uillirt.scala/soap-service/${project.version}</bundle>
     </feature>
